@@ -1,0 +1,3 @@
+Coloque estes ficheiros (extraídos do site original) nas pastas indicadas:
+assets/aguia.jpg, assets/icone.png, assets/servico-video.jpg, assets/servico-fotografia.jpg, assets/servico-geral.jpg, assets/PORTFOLIO.pdf
+assets/parceiros/: enh.png greeny-art-solution.png ministerio-da-saude.png apex.png bni.png winnies-fashion.png taibo-bacar.png afrisian.png
