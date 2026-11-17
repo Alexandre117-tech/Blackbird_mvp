@@ -19,7 +19,10 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="servicos/css/interno.css">
+ 
+    <link rel="stylesheet" href="servicos/css/header.css">
+    <link rel="stylesheet" href="servicos/css/responsividade.css">
 
     <style>
         :root {
@@ -59,187 +62,6 @@
 
 
 
-.hero {
-  position: relative;
-  width: 100%;
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
-  padding-top: calc(env(safe-area-inset-top, 0px) + 100px);
-  padding-bottom: 28px;
-  overflow: hidden;
-}
-
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: var(--eagle) center / cover no-repeat;
-  opacity: 0.7;
-  filter: blur(3px);
-  transform: scale(0.8);
-  z-index: 0;
-  pointer-events: none;
-}
-
-.hero::after {
-  content: "";
-  position: absolute;
-  left: 0; right: 0; bottom: 0;
-  height: 110px;
-  background: linear-gradient(to bottom, transparent, var(--bg));
-  pointer-events: none;
-  z-index: 1;
-}
-
-
-
-.hero .wrap {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  z-index: 2;
-  transform: scale(1);
-  transition: transform 0.85s var(--ease);
-}
-
-.hero .ln2 {
-  display: block;
-  font-size: var(--fs-md);
-  color: var(--ash);
-  font-weight: 700;
-  text-transform: uppercase;
-  margin-top: 8px;
-  letter-spacing: 0.12em;
-}
-
-
-/* =====================================
-   HERO - PÁGINA EMPRESA
-===================================== */
-
-.hero-company {
-    position: relative;
-    isolation: isolate;
-    width: 100%;
-    min-height: 88svh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: calc(env(safe-area-inset-top, 0px) + 130px) 0 35px;
-    overflow: hidden;
-    background: var(--bg);
-}
-
-/* Imagem de fundo */
-.hero-company::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: var(--eagle) center / cover no-repeat;
-    opacity: 0.42;
-    filter: blur(2px);
-    transform: scale(1.04);
-    z-index: -2;
-    pointer-events: none;
-}
-
-/* Sobreposição para melhorar contraste */
-.hero-company::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background:
-        linear-gradient(
-            90deg,
-            rgba(0, 0, 0, 0.92) 0%,
-            rgba(0, 0, 0, 0.72) 48%,
-            rgba(0, 0, 0, 0.25) 100%
-        ),
-        linear-gradient(
-            to top,
-            var(--bg) 0%,
-            transparent 28%
-        );
-    z-index: -1;
-    pointer-events: none;
-}
-
-/* Camada de conteúdo */
-.hero-company .hero-content {
-    position: relative;
-    z-index: 2;
-    flex: 1;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-}
-
-/* Texto */
-.hero-copy {
-    width: 100%;
-    max-width: 900px;
-    padding: 55px 0 85px;
-}
-
-/* Identificação */
-.hero-company .eyebrow {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 25px;
-    color: var(--ash);
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-}
-
-.hero-company .eyebrow::before {
-    content: "";
-    display: inline-block;
-    width: 32px;
-    height: 2px;
-    background: currentColor;
-}
-
-/* Título */
-.hero-company h1 {
-    max-width: 850px;
-    margin: 0;
-    font-size: clamp(1.7rem, 5.5vw, 5rem);
-    line-height: 1.08;
-    font-weight: 800;
-    letter-spacing: -0.055em;
-    text-transform: none;
-}
-
-.hero-company h1 span {
-    display: block;
-    color: var(--ash);
-}
-
-/* Descrição */
-.hero-company .lead {
-    max-width: 650px;
-    margin-top: 28px;
-    font-size: clamp(1rem, 1.5vw, 1.2rem);
-    line-height: 1.9;
-    color: rgba(255, 255, 255, 0.78);
-}
-
-/* Botões */
-.hero-actions {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 14px;
-    margin-top: 35px;
-}
 
 /* Rodapé do hero */
 .hero-bottom {
@@ -256,27 +78,7 @@
     letter-spacing: 0.14em;
 }
 
-.hero-scroll {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    color: inherit;
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
 
-.hero-scroll span {
-    font-size: 1.2rem;
-    transition: transform 0.3s ease;
-}
-
-.hero-scroll:hover {
-    color: white;
-}
-
-.hero-scroll:hover span {
-    transform: translateY(5px);
-}
 
 /* =====================================
    RESPONSIVIDADE
@@ -353,74 +155,13 @@
 /* =========================================================
    NAVEGAÇÃO
    ========================================================= */
-.nav {
-  position: fixed;
-  top: 16px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: min(92%, 1220px);
-  z-index: 50;
-  padding: 12px 28px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  background: rgba(18, 18, 20, 0.55);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  transition: transform 0.45s var(--ease), background 0.3s, border-color 0.3s;
-}
-.nav.nav-hidden { transform: translateX(-50%) translateY(-150%); }
-.nav.solid {
-  background: rgba(14, 14, 16, 0.88);
-  border-color: rgba(255, 255, 255, 0.22);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
-}
 
-.nav ul {
-  display: flex;
-  align-items: center;
-  gap: clamp(16px, 2.4vw, 34px);
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-.nav ul a {
-  text-decoration: none;
-  font-size: var(--fs-sm);
-  font-weight: 400;
-  color: var(--text);
-  padding: 4px 2px;
-  transition: color 0.2s;
-}
-.nav ul a:hover { color: var(--white); }
-
-.nav .cta-nav {
-  border: 1px solid var(--silver);
-  padding: 7px 18px;
-  border-radius: 999px;
-  color: var(--silver);
-  transition: background 0.2s, color 0.2s;
-}
-.nav .cta-nav:hover { background: var(--silver); color: var(--bg); }
-
-.nav .menu {
-  display: none;
-  background: none;
-  border: 1px solid var(--line);
-  color: var(--silver);
-  font: inherit;
-  font-size: var(--fs-sm);
-  padding: 6px 14px;
-  border-radius: 999px;
-  cursor: pointer;
-}
 
     </style>
 </head>
 
 <body>
+    <canvas id="snow" aria-hidden="true"></canvas>
 
 <a class="skip" href="#conteudo">Saltar para o conteúdo</a>
 
@@ -462,40 +203,28 @@
     <!-- APRESENTAÇÃO -->
 
 <!-- HERO EMPRESA -->
-<section class="phead hero hero-company">
+<section class="phead hero services-hero">
 
-    <div class="hero-overlay"></div>
+  
 
-    <div class="wrap hero-content">
+    <div class="wrap">
 
-        <div class="hero-copy">
+        <div class="services-hero-content">
 
-            <span class="eyebrow">
+            <span class="services-eyebrow">
                 BLACKBIRD MÍDIA · QUEM SOMOS
             </span>
 
-            <h1>
-                Criatividade que comunica.
-                <span>Tecnologia que transforma.</span>
-            </h1>
+                  <h1>
+        <span class="line">Sobre Nós</span>
+    
+      </h1>
 
-            <p class="lead">
-                Unimos produção audiovisual, design, comunicação
-                e tecnologia para transformar ideias em soluções
-                que fortalecem marcas e impulsionam negócios.
-            </p>
 
-            <div class="hero-actions">
-
-                <a href="servicos.html" class="btn">
-                    Conheça os nossos serviços
-                </a>
-
-                <a href="contacto.html" class="btn ghost">
-                    Fale connosco
-                </a>
-
-            </div>
+ <div class="services-hero-actions">
+        <a href="#areas" class="btn btn-solid">Explorar serviços</a>
+        <a href="contacto.html" class="btn btn-line">Solicitar proposta</a>
+      </div>
 
         </div>
 
@@ -849,8 +578,8 @@
 
 </footer>
 
-
-<script src="js/main.js"></script>
+<script src="servicos/js/menu.js"></script>
+<script src="servicos/js/interno.js"></script>
 
 </body>
 </html>
