@@ -9,7 +9,9 @@
 <link rel="icon" href="assets/icone.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,700;0,900;1,300;1,700;1,900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="servicos/css/interno.css">
+<link rel="stylesheet" href="servicos/css/header.css">
+<link rel="stylesheet" href="servicos/css/responsividade.css">
 
 <style>
         :root {
@@ -64,110 +66,6 @@
     z-index: 1;
 }
 
-.services-eyebrow {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    color: var(--ash);
-    font-size: var(--fs-xs);
-    text-transform: uppercase;
-    letter-spacing: .18em;
-    margin-bottom: 28px;
-}
-
-.services-eyebrow::before {
-    content: "";
-    width: 30px;
-    height: 1px;
-    background: var(--silver);
-}
-
-.services-hero h1 {
-    max-width: 1000px;
-    font-size: clamp(3rem, 7.5vw, 7rem);
-    line-height: .98;
-    letter-spacing: -.075em;
-    font-weight: 700;
-    margin: 0 0 30px;
-}
-
-.services-hero h1 span {
-    color: var(--ash);
-}
-
-.services-hero .hero-description {
-    max-width: 660px;
-    color: var(--ash);
-    font-size: clamp(1rem, 1.5vw, 1.2rem);
-    line-height: 1.9;
-}
-
-.services-hero-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 14px;
-    margin-top: 35px;
-}
-
-.services-index {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    padding: 26px 0;
-    border-top: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
-    margin-top: 65px;
-}
-
-.services-index a {
-    color: var(--ash);
-    text-decoration: none;
-    font-size: var(--fs-sm);
-    padding: 9px 15px;
-    border: 1px solid var(--line);
-    border-radius: 30px;
-    transition: .3s;
-}
-
-.services-index a:hover {
-    color: var(--white);
-    border-color: var(--silver);
-}
-
-/* INTRODUÇÃO */
-
-.service-overview {
-    padding: var(--section-y) 0 50px;
-}
-
-.service-heading {
-    display: grid;
-    grid-template-columns: 1.1fr .9fr;
-    gap: 50px;
-    align-items: end;
-    margin-bottom: 55px;
-}
-
-.service-heading h2 {
-    font-size: var(--fs-xl);
-    line-height: 1.15;
-    letter-spacing: -.045em;
-    max-width: 650px;
-}
-
-.service-heading p {
-    color: var(--ash);
-    line-height: 1.9;
-    max-width: 470px;
-}
-
-/* CARTÕES DE ÁREAS */
-
-.service-overview-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-}
 
 .overview-card {
     position: relative;
@@ -397,319 +295,8 @@
 
 /* RESPONSIVIDADE */
 
-@media (max-width: 900px) {
-    .service-heading,
-    .service-detail-grid,
-    .service-detail-grid.reverse {
-        grid-template-columns: 1fr;
-        gap: 35px;
-    }
-
-    .service-detail-grid.reverse .service-content,
-    .service-detail-grid.reverse .service-image {
-        order: initial;
-    }
-
-    .method-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .service-image {
-        min-height: 380px;
-    }
-}
-
-@media (max-width: 600px) {
-    .services-hero {
-        padding-top: 135px;
-        padding-bottom: 65px;
-    }
-
-    .services-hero h1 {
-        font-size: clamp(2.8rem, 13vw, 4.5rem);
-    }
-
-    .services-index {
-        gap: 8px;
-        margin-top: 45px;
-    }
-
-    .services-index a {
-        font-size: 12px;
-    }
-
-    .service-overview-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .overview-card {
-        min-height: 270px;
-        padding: 24px;
-    }
-
-    .service-list {
-        grid-template-columns: 1fr;
-    }
-
-    .service-image {
-        min-height: 280px;
-    }
-
-    .method-grid {
-        grid-template-columns: 1fr;
-        gap: 35px;
-    }
-
-    .services-hero-actions {
-        flex-direction: column;
-    }
-
-    .services-hero-actions .btn {
-        width: 100%;
-        justify-content: center;
-    }
-}
 
 
-/* =========================================================
-   NAVEGAÇÃO
-   ========================================================= */
-.nav {
-  position: fixed;
-  top: 16px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: min(92%, 1220px);
-  z-index: 50;
-  padding: 12px 28px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  background: rgba(18, 18, 20, 0.55);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  transition: transform 0.45s var(--ease), background 0.3s, border-color 0.3s;
-}
-.nav.nav-hidden { transform: translateX(-50%) translateY(-150%); }
-.nav.solid {
-  background: rgba(14, 14, 16, 0.88);
-  border-color: rgba(255, 255, 255, 0.22);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
-}
-
-.nav ul {
-  display: flex;
-  align-items: center;
-  gap: clamp(16px, 2.4vw, 34px);
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-.nav ul a {
-  text-decoration: none;
-  font-size: var(--fs-sm);
-  font-weight: 400;
-  color: var(--text);
-  padding: 4px 2px;
-  transition: color 0.2s;
-}
-.nav ul a:hover { color: var(--white); }
-
-.nav .cta-nav {
-  border: 1px solid var(--silver);
-  padding: 7px 18px;
-  border-radius: 999px;
-  color: var(--silver);
-  transition: background 0.2s, color 0.2s;
-}
-.nav .cta-nav:hover { background: var(--silver); color: var(--bg); }
-
-.nav .menu {
-  display: none;
-  background: none;
-  border: 1px solid var(--line);
-  color: var(--silver);
-  font: inherit;
-  font-size: var(--fs-sm);
-  padding: 6px 14px;
-  border-radius: 999px;
-  cursor: pointer;
-}
-
-
-
-/* =====================================
-   HERO — SERVIÇOS
-===================================== */
-.services-hero {
-  position: relative;
-  isolation: isolate;
-  min-height: 92svh;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: calc(env(safe-area-inset-top, 0px) + 140px) 0 0;
-  overflow: hidden;
-}
-
-.services-hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: var(--eagle) center / cover no-repeat;
-  opacity: .5;
-  filter: grayscale(1) contrast(1.1);
-  transform: scale(1.06);
-  animation: heroZoom 20s var(--ease) both;
-  z-index: -2;
-  pointer-events: none;
-}
-
-.services-hero::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(90deg, rgba(11,11,12,.92) 0%, rgba(11,11,12,.6) 55%, rgba(11,11,12,.25) 100%),
-    linear-gradient(to bottom, transparent 55%, var(--bg) 100%);
-  z-index: -1;
-  pointer-events: none;
-}
-
-.services-hero .wrap { position: relative; z-index: 2; width: 100%; }
-.services-hero-content { max-width: 900px; padding: 20px 0 clamp(50px, 8vw, 90px); }
-
-/* Eyebrow */
-.services-eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 26px;
-  color: var(--silver);
-  font-size: var(--fs-xs);
-  font-weight: 500;
-  letter-spacing: .2em;
-  text-transform: uppercase;
-}
-.services-eyebrow::before {
-  content: "";
-  width: 32px;
-  height: 1px;
-  background: currentColor;
-}
-.services-hero .services-eyebrow::before {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--white);
-  animation: pulse 2.4s ease-in-out infinite;
-}
-
-/* Título */
-.services-hero h1 {
-  margin: 0;
-  font-size: clamp(2.6rem, 6.4vw, 5.8rem);
-  line-height: 1.02;
-  font-weight: 700;
-  letter-spacing: -.06em;
-  color: var(--white);
-}
-.services-hero h1 .line {
-  display: block;
-  opacity: 0;
-  transform: translateY(28px);
-  animation: rise .9s var(--ease) forwards;
-}
-.services-hero h1 .line:nth-child(2) { animation-delay: .12s; }
-.services-hero h1 .line:nth-child(3) { animation-delay: .24s; }
-.services-hero h1 .accent {
-  background: linear-gradient(90deg, var(--white), var(--ash));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-.services-hero .hero-description {
-  max-width: 600px;
-  margin-top: 28px;
-  font-size: clamp(1rem, 1.4vw, 1.15rem);
-  line-height: 1.85;
-  color: rgba(255,255,255,.72);
-  opacity: 0;
-  animation: rise .9s .38s var(--ease) forwards;
-}
-
-.services-hero-actions {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 14px;
-  margin-top: 36px;
-}
-.services-hero .services-hero-actions { opacity: 0; animation: rise .9s .5s var(--ease) forwards; }
-
-/* Índice */
-.services-index {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  border-top: 1px solid rgba(255,255,255,.18);
-}
-.services-index a {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 24px 20px 26px 0;
-  color: var(--silver);
-  text-decoration: none;
-  font-size: var(--fs-sm);
-  font-weight: 500;
-  transition: color .3s, padding .4s var(--ease);
-}
-.services-index a b { font-weight: 500; }
-.services-index a span {
-  margin-right: 12px;
-  color: var(--ash);
-  font-size: var(--fs-xs);
-  letter-spacing: .15em;
-}
-.services-index a i {
-  font-style: normal;
-  color: var(--ash);
-  transition: transform .3s var(--ease), color .3s;
-}
-.services-index a:hover { color: var(--white); padding-left: 8px; }
-.services-index a:hover i { color: var(--white); transform: translate(3px, -3px); }
-
-/* Animações */
-@keyframes rise { to { opacity: 1; transform: none; } }
-@keyframes heroZoom { from { transform: scale(1.14); } to { transform: scale(1.04); } }
-@keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: .25; } }
-
-@media (prefers-reduced-motion: reduce) {
-  .services-hero::before,
-  .services-hero .services-eyebrow::before { animation: none; }
-  .services-hero h1 .line,
-  .services-hero .hero-description,
-  .services-hero .services-hero-actions { animation: none; opacity: 1; transform: none; }
-}
-
-/* Responsivo */
-@media (max-width: 768px) {
-  .services-hero { min-height: auto; padding-top: calc(env(safe-area-inset-top, 0px) + 115px); }
-  .services-hero::after {
-    background: linear-gradient(to bottom, rgba(11,11,12,.7), rgba(11,11,12,.85) 60%, var(--bg));
-  }
-  .services-index { grid-template-columns: 1fr 1fr; }
-  .services-index a { padding: 18px 12px 18px 0; }
-}
-@media (max-width: 480px) {
-  .services-hero h1 { font-size: clamp(2.3rem, 12vw, 3.2rem); }
-  .services-hero-actions { flex-direction: column; align-items: stretch; }
-  .services-hero-actions .btn { width: 100%; justify-content: center; text-align: center; }
-}
 </style>
 </head>
 <body class="">
@@ -738,12 +325,13 @@
 
   <ul id="menuList">
     <li><a href="sobre.html">Sobre nós</a></li>
-    <li><a href="#servicos">Serviços</a></li>
+    <li><a href="servicos.html">Serviços</a></li>
     <li><a href="processo.html">Processo</a></li>
     <li><a href="projetos.html">Projetos</a></li>
     <li><a class="cta-nav" href="contacto.html">Falar Conosco</a></li>
   </ul>
 </header>
+
 
 
 <main id="conteudo" class="services-page">
@@ -757,21 +345,17 @@
       <span class="services-eyebrow">O que fazemos / BlackBird Mídia</span>
 
       <h1>
-        <span class="line">Soluções que</span>
-        <span class="line accent">transformam ideias</span>
-        <span class="line">em resultados.</span>
+        <span class="line">Nossos Serviços</span>
+
       </h1>
 
-      <p class="hero-description">
-        Integramos criatividade, comunicação e tecnologia para desenvolver
-        soluções que fortalecem marcas, aproximam pessoas e impulsionam
-        organizações.
-      </p>
+ 
 
-      <div class="services-hero-actions">
+        <div class="services-hero-actions">
         <a href="#areas" class="btn btn-solid">Explorar serviços</a>
         <a href="contacto.html" class="btn btn-line">Solicitar proposta</a>
       </div>
+
     </div>
 
     <nav class="services-index" aria-label="Áreas de serviço">
@@ -1167,6 +751,7 @@
 </div>
 <div class="wrap legal"><span class="chip">only excellence</span><span>© <span id="yr">2026</span> BlackBird Mídia. Todos os direitos reservados.</span></div>
 </footer>
-<script src="js/main.js"></script>
+<script src="js/interno.js"></script>
+<script src="servicos/js/menu.js"></script>
 </body>
 </html>
