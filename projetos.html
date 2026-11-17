@@ -2,6 +2,7 @@
 <html lang="pt-MZ">
 <head>
 <meta charset="utf-8">
+<script src="servicos/js/tema.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Projetos | BlackBird Mídia</title>
 <meta name="description" content="Trabalho que fala por nós: audiovisual, tecnologia e design para marcas e instituições.">
@@ -288,6 +289,7 @@
   border: 1px solid rgba(255,255,255,.1);
   background: #171719;
   color: white;
+  border-radius: 18px;
   text-decoration: none;
   transition:
     border-color .4s ease,
@@ -303,8 +305,8 @@
   inset: 0;
   z-index: -2;
   background: var(--cover) center / cover no-repeat;
-  opacity: .52;
-  filter: grayscale(.7);
+  opacity: .68;
+  filter: grayscale(.25) saturate(.9);
   transform: scale(1.01);
   transition:
     transform .8s cubic-bezier(.2,.7,.2,1),
@@ -325,14 +327,20 @@
   );
 }
 
+.portfolio-card:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 4px;
+}
+
 .portfolio-card:hover {
+  transform: translateY(-4px);
   border-color: rgba(255,255,255,.45);
 }
 
 .portfolio-card:hover .portfolio-card-image {
   transform: scale(1.07);
   filter: grayscale(0);
-  opacity: .75;
+  opacity: .9;
 }
 
 .portfolio-card-content {
@@ -613,7 +621,7 @@
 
       
       <div class="services-hero-actions">
-        <a href="#areas" class="btn btn-solid">Explorar serviços</a>
+        <a href="#portfolio" class="btn btn-solid">Explorar serviços</a>
         <a href="contacto.html" class="btn btn-line">Solicitar proposta</a>
       </div>
 
@@ -648,10 +656,10 @@
 
       <!-- FILTROS -->
       <div class="portfolio-filters" aria-label="Filtrar projetos">
-        <a class="filter active" href="#audiovisual">Todos</a>
-        <a class="filter" href="#audiovisual">Audiovisual</a>
-        <a class="filter" href="#tecnologia">Tecnologia</a>
-        <a class="filter" href="#design">Design</a>
+        <a class="filter active" href="#portfolio" data-filter="all">Todos</a>
+        <a class="filter" href="#audiovisual" data-filter="audiovisual">Audiovisual</a>
+        <a class="filter" href="#tecnologia" data-filter="tecnologia">Tecnologia</a>
+        <a class="filter" href="#design" data-filter="design">Design</a>
       </div>
 
       <!-- AUDIOVISUAL -->
@@ -672,7 +680,7 @@
 
           <a class="portfolio-card portfolio-card-large fade-up"
              href="#"
-             style="--cover:url('assets/projetos/filme-institucional.jpg')">
+             style="--cover:url('https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=1400&q=85')">
 
             <div class="portfolio-card-image"></div>
 
@@ -695,7 +703,7 @@
 
           <a class="portfolio-card fade-up"
              href="#"
-             style="--cover:url('assets/projetos/cobertura-evento.jpg')">
+             style="--cover:url('https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&w=1200&q=85')">
 
             <div class="portfolio-card-image"></div>
 
@@ -717,7 +725,7 @@
 
           <a class="portfolio-card fade-up"
              href="#"
-             style="--cover:url('assets/projetos/campanha-publicitaria.jpg')">
+             style="--cover:url('https://images.unsplash.com/photo-1492619375914-88005aa9e8fb?auto=format&fit=crop&w=1200&q=85')">
 
             <div class="portfolio-card-image"></div>
 
@@ -739,7 +747,7 @@
 
           <a class="portfolio-card portfolio-card-large fade-up"
              href="#"
-             style="--cover:url('assets/projetos/documentario.jpg')">
+             style="--cover:url('https://images.unsplash.com/photo-1478720568477-152d9b164e26?auto=format&fit=crop&w=1400&q=85')">
 
             <div class="portfolio-card-image"></div>
 
@@ -781,7 +789,7 @@
 
           <a class="portfolio-card fade-up"
              href="#"
-             style="--cover:url('assets/projetos/website.jpg')">
+             style="--cover:url('https://images.unsplash.com/photo-1498050108023-c5249f4df71?auto=format&fit=crop&w=1200&q=85')">
 
             <div class="portfolio-card-image"></div>
 
@@ -804,7 +812,7 @@
 
           <a class="portfolio-card fade-up"
              href="#"
-             style="--cover:url('assets/projetos/sistema-gestao.jpg')">
+             style="--cover:url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=85')">
 
             <div class="portfolio-card-image"></div>
 
@@ -827,7 +835,7 @@
 
           <a class="portfolio-card fade-up"
              href="#"
-             style="--cover:url('assets/projetos/portal-evento.jpg')">
+             style="--cover:url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1200&q=85')">
 
             <div class="portfolio-card-image"></div>
 
@@ -868,7 +876,7 @@
 
           <a class="portfolio-card fade-up"
              href="#"
-             style="--cover:url('assets/projetos/identidade-visual.jpg')">
+             style="--cover:url('https://images.unsplash.com/photo-1545235617-9465d2a55698?auto=format&fit=crop&w=1200&q=85')">
 
             <div class="portfolio-card-image"></div>
 
@@ -891,7 +899,7 @@
 
           <a class="portfolio-card fade-up"
              href="#"
-             style="--cover:url('assets/projetos/design-institucional.jpg')">
+             style="--cover:url('https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1200&q=85')">
 
             <div class="portfolio-card-image"></div>
 
@@ -913,7 +921,7 @@
 
           <a class="portfolio-card fade-up"
              href="#"
-             style="--cover:url('assets/projetos/redes-sociais.jpg')">
+             style="--cover:url('https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=1200&q=85')">
 
             <div class="portfolio-card-image"></div>
 
@@ -974,7 +982,7 @@
         <a class="logo" href="index.html" aria-label="BlackBird Mídia">BLA<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10.5"/><path d="M12 1.5 L18.5 11.5"/><path d="M12 1.5 L18.5 11.5" transform="rotate(60 12 12)"/><path d="M12 1.5 L18.5 11.5" transform="rotate(120 12 12)"/><path d="M12 1.5 L18.5 11.5" transform="rotate(180 12 12)"/><path d="M12 1.5 L18.5 11.5" transform="rotate(240 12 12)"/><path d="M12 1.5 L18.5 11.5" transform="rotate(300 12 12)"/></svg>KBIRD<small>Mídia</small></a>
         <p style="margin-top:14px">Produtora audiovisual, desenvolvimento de software, design e consultoria para marcas e instituições.</p>
       </div>
-      <div><h4>Navegação</h4><ul><li><a href="index.html#quem-somos">Estúdio</a></li><li><a href="servicos.html">Serviços</a></li><li><a href="processo.html">Processo</a></li><li><a href="portfolio.html">Projetos</a></li></ul></div>
+      <div><h4>Navegação</h4><ul><li><a href="index.html#quem-somos">Estúdio</a></li><li><a href="servicos.html">Serviços</a></li><li><a href="processo.html">Processo</a></li><li><a href="projetos.html">Projetos</a></li></ul></div>
       <div><h4>Serviços</h4><ul><li><a href="servicos.html#video">Audiovisual</a></li><li><a href="servicos.html#websites">Websites e portais</a></li><li><a href="servicos.html#erp">ERP e automação</a></li><li><a href="servicos.html#design">Design gráfico</a></li><li><a href="servicos.html#consultoria">Consultoria</a></li></ul></div>
       <div><h4>Contacto</h4><ul><li><a href="contacto.html">Pedir proposta</a></li><li><a href="contacto.html">Falar connosco</a></li></ul></div>
     </div>
@@ -1004,6 +1012,26 @@
       });
     });
   });
+});
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    const elements = document.querySelectorAll(".fade-up");
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("in-view");
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.15
+    });
+
+    elements.forEach(element => {
+        observer.observe(element);
+    });
 });
 </script>
 </body>
