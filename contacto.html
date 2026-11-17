@@ -1,118 +1,488 @@
 <!DOCTYPE html>
 <html lang="pt-MZ">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Contacto | BlackBird Mídia</title>
-<meta name="description" content="Conte-nos o que precisa e respondemos com uma proposta à medida do seu negócio.">
-<meta name="color-scheme" content="dark">
-<link rel="icon" href="assets/icone.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,900;1,300;1,700;1,900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/interno.css">
-</head>
-<body>
-<a class="skip" href="#conteudo">Saltar para o conteúdo</a>
-<canvas id="snow" aria-hidden="true"></canvas>
 
+<head>
+  <!-- ============ META ============ -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="dark">
+  <title>Contacto | BlackBird Mídia</title>
+  <meta name="description" content="Conte-nos o que precisa e respondemos com uma proposta à medida do seu negócio.">
+  <link rel="icon" href="assets/icone.png">
+
+  <!-- ============ FONTES ============ -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,900;1,300;1,700;1,900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="servicos/css/interno.css">
+    <link rel="stylesheet" href="servicos/css/header.css">
+    <link rel="stylesheet" href="servicos/css/responsividade.css">
+
+
+  <style>
+    /* ==========================================================
+   BlackBird Mídia · estilos da página de contacto
+   Carregar DEPOIS de interno.css. Tudo está limitado a
+   body.pg-contacto, por isso não afeta as outras páginas.
+   ========================================================== */
+
+/* ---------- 1. Variáveis (ajuste aqui as cores) ---------- */
+body.pg-contacto {
+  --c-bg: #0a0a0b;
+  --c-surface: #131316;
+  --c-field: #0e0e10;
+  --c-line: rgba(255, 255, 255, .12);
+  --c-line-strong: rgba(255, 255, 255, .28);
+  --c-text: #f4f4f5;
+  --c-muted: #a1a1aa;
+  --c-accent: #ffffff;      /* botão principal e foco */
+  --c-on-accent: #0a0a0b;
+  --c-error: #ff6b6b;
+  --c-ok: #5ad19a;
+  --radius: 14px;
+  --gap: clamp(16px, 2.4vw, 24px);
+  --ease: cubic-bezier(.2, .7, .2, 1);
+}
+
+/* ---------- 2. Topo da página ---------- */
+body.pg-contacto .phead {
+  padding: clamp(110px, 16vw, 170px) 0 clamp(36px, 6vw, 64px);
+  border-bottom: 1px solid var(--c-line);
+}
+body.pg-contacto .crumbs {
+  font-size: .8rem;
+  letter-spacing: .04em;
+  color: var(--c-muted);
+  margin-bottom: 22px;
+}
+body.pg-contacto .crumbs a { color: inherit; text-decoration: none; transition: color .2s; }
+body.pg-contacto .crumbs a:hover { color: var(--c-text); }
+body.pg-contacto .crumbs span { color: var(--c-text); }
+body.pg-contacto .phead .chip { display: inline-block; margin-bottom: 18px; }
+body.pg-contacto .phead h1 {
+  font-weight: 900;
+  font-size: clamp(2.2rem, 6.5vw, 4.6rem);
+  line-height: 1.02;
+  letter-spacing: -.02em;
+  text-transform: lowercase;
+  margin: 0 0 18px;
+}
+body.pg-contacto .phead .lead {
+  max-width: 52ch;
+  font-size: clamp(1rem, 1.6vw, 1.2rem);
+  font-weight: 300;
+  line-height: 1.65;
+  color: var(--c-muted);
+  margin: 0;
+}
+
+/* ---------- 3. Layout: dados + formulário ---------- */
+body.pg-contacto .contact {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr);
+  gap: clamp(28px, 5vw, 72px);
+  align-items: start;
+  padding-block: clamp(40px, 7vw, 88px);
+}
+
+/* ---------- 4. Dados de contacto ---------- */
+body.pg-contacto .info {
+  display: grid;
+  gap: 0;
+  position: sticky;
+  top: 110px;
+}
+body.pg-contacto .info > div {
+  display: grid;
+  gap: 6px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--c-line);
+}
+body.pg-contacto .info > div:first-child { padding-top: 0; }
+body.pg-contacto .info b {
+  font-size: .72rem;
+  font-weight: 500;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--c-muted);
+}
+body.pg-contacto .info a,
+body.pg-contacto .info span {
+  font-size: clamp(1rem, 1.5vw, 1.15rem);
+  font-weight: 400;
+  color: var(--c-text);
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+body.pg-contacto .info a {
+  width: fit-content;
+  background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
+  transition: background-size .3s var(--ease);
+}
+body.pg-contacto .info a:hover { background-size: 100% 1px; }
+body.pg-contacto .note {
+  margin: 18px 0 0;
+  font-size: .85rem;
+  line-height: 1.6;
+  color: var(--c-muted);
+}
+
+/* ---------- 5. Formulário ---------- */
+body.pg-contacto .form {
+  display: grid;
+  gap: var(--gap);
+  padding: clamp(20px, 3.4vw, 40px);
+  background: var(--c-surface);
+  border: 1px solid var(--c-line);
+  border-radius: calc(var(--radius) + 6px);
+}
+body.pg-contacto .form .row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--gap);
+}
+body.pg-contacto .form label {
+  display: grid;
+  gap: 8px;
+  align-content: start;
+  font-size: .8rem;
+  font-weight: 500;
+  letter-spacing: .04em;
+  color: var(--c-muted);
+}
+
+body.pg-contacto .form input,
+body.pg-contacto .form select,
+body.pg-contacto .form textarea {
+  width: 100%;
+  font: inherit;
+  font-size: 1rem;           /* evita zoom automático no iOS */
+  font-weight: 300;
+  letter-spacing: 0;
+  color: var(--c-text);
+  background: var(--c-field);
+  border: 1px solid var(--c-line);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  transition: border-color .2s, box-shadow .2s, background .2s;
+  -webkit-appearance: none;
+  appearance: none;
+}
+body.pg-contacto .form textarea { min-height: 160px; resize: vertical; line-height: 1.6; }
+body.pg-contacto .form ::placeholder { color: rgba(255, 255, 255, .32); }
+body.pg-contacto .form input:hover,
+body.pg-contacto .form select:hover,
+body.pg-contacto .form textarea:hover { border-color: var(--c-line-strong); }
+body.pg-contacto .form input:focus-visible,
+body.pg-contacto .form select:focus-visible,
+body.pg-contacto .form textarea:focus-visible {
+  outline: none;
+  border-color: var(--c-accent);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, .14);
+}
+
+/* seta do select */
+body.pg-contacto .form select {
+  padding-right: 44px;
+  cursor: pointer;
+  background-image:
+    linear-gradient(45deg, transparent 50%, var(--c-muted) 50%),
+    linear-gradient(135deg, var(--c-muted) 50%, transparent 50%);
+  background-position: calc(100% - 22px) 50%, calc(100% - 16px) 50%;
+  background-size: 6px 6px;
+  background-repeat: no-repeat;
+}
+body.pg-contacto .form select option,
+body.pg-contacto .form select optgroup { background: #17171a; color: var(--c-text); }
+
+/* estados de erro */
+body.pg-contacto .form [aria-invalid="true"],
+body.pg-contacto .form .invalid input,
+body.pg-contacto .form .invalid select,
+body.pg-contacto .form .invalid textarea { border-color: var(--c-error); }
+body.pg-contacto .err {
+  font-size: .78rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  color: var(--c-error);
+}
+body.pg-contacto .err:empty { display: none; }
+
+/* ---------- 6. Botões ---------- */
+body.pg-contacto .btns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 4px;
+}
+body.pg-contacto .form .btn {
+  flex: 1 1 200px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  padding: 14px 26px;
+  font: inherit;
+  font-size: .95rem;
+  font-weight: 600;
+  letter-spacing: .02em;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: transform .2s var(--ease), background .2s, color .2s, border-color .2s;
+}
+body.pg-contacto .form .btn-solid {
+  background: var(--c-accent);
+  color: var(--c-on-accent);
+  border: 1px solid var(--c-accent);
+}
+body.pg-contacto .form .btn-solid:hover { transform: translateY(-2px); background: #e4e4e7; }
+body.pg-contacto .form .btn-line {
+  background: transparent;
+  color: var(--c-text);
+  border: 1px solid var(--c-line-strong);
+}
+body.pg-contacto .form .btn-line:hover { transform: translateY(-2px); border-color: var(--c-text); }
+body.pg-contacto .form .btn:active { transform: translateY(0); }
+body.pg-contacto .form .btn:focus-visible { outline: 2px solid var(--c-accent); outline-offset: 3px; }
+body.pg-contacto .form .btn[disabled] { opacity: .5; pointer-events: none; }
+
+/* ---------- 7. Mensagem de estado ---------- */
+body.pg-contacto .status { margin: 0; font-size: .9rem; min-height: 1.2em; color: var(--c-muted); }
+body.pg-contacto .status.ok { color: var(--c-ok); }
+body.pg-contacto .status.error { color: var(--c-error); }
+body.pg-contacto .status:empty { display: none; }
+body.pg-contacto .form .note { margin: 0; }
+
+/* ---------- 8. Responsivo ---------- */
+@media (max-width: 900px) {
+  body.pg-contacto .contact { grid-template-columns: 1fr; }
+  body.pg-contacto .info { position: static; }
+}
+@media (max-width: 560px) {
+  body.pg-contacto .form .row { grid-template-columns: 1fr; }
+  body.pg-contacto .form .btn { flex-basis: 100%; }
+}
+
+/* ---------- 9. Movimento reduzido ---------- */
+@media (prefers-reduced-motion: reduce) {
+  body.pg-contacto * { transition: none !important; }
+}
+  </style>
+</head>
+
+<body>
+
+ 
+  <canvas id="snow" aria-hidden="true"></canvas>
+
+
+  <!-- ==================================================
+       CABEÇALHO / NAVEGAÇÃO
+       ================================================== -->
+<!-- CABEÇALHO -->
 <header class="nav" id="nav">
-  <a class="logo" href="index.html" aria-label="BlackBird Mídia, início">BLA<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10.5"/><path d="M12 1.5 L18.5 11.5"/><path d="M12 1.5 L18.5 11.5" transform="rotate(60 12 12)"/><path d="M12 1.5 L18.5 11.5" transform="rotate(120 12 12)"/><path d="M12 1.5 L18.5 11.5" transform="rotate(180 12 12)"/><path d="M12 1.5 L18.5 11.5" transform="rotate(240 12 12)"/><path d="M12 1.5 L18.5 11.5" transform="rotate(300 12 12)"/></svg>KBIRD<small>Mídia</small></a>
-  <button class="menu" id="menuBtn" aria-expanded="false" aria-controls="menuList">Menu</button>
+  <a class="logo" href="index.html" aria-label="BlackBird Mídia, início">
+    BLA<svg viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" stroke-width="2"
+      stroke-linecap="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="10.5"/>
+      <path d="M12 1.5 L18.5 11.5" transform="rotate(0 12 12)"/>
+      <path d="M12 1.5 L18.5 11.5" transform="rotate(60 12 12)"/>
+      <path d="M12 1.5 L18.5 11.5" transform="rotate(120 12 12)"/>
+      <path d="M12 1.5 L18.5 11.5" transform="rotate(180 12 12)"/>
+      <path d="M12 1.5 L18.5 11.5" transform="rotate(240 12 12)"/>
+      <path d="M12 1.5 L18.5 11.5" transform="rotate(300 12 12)"/>
+    </svg>KBIRD
+    <small>Mídia</small>
+  </a>
+
+  <button class="menu" id="menuBtn"
+    aria-expanded="false" aria-controls="menuList">
+    Menu
+  </button>
+
   <ul id="menuList">
-    <li><a href="index.html#quem-somos">Estúdio</a></li>
+    <li><a href="sobre.html">Sobre nós</a></li>
     <li><a href="servicos.html">Serviços</a></li>
     <li><a href="processo.html">Processo</a></li>
-    <li><a href="portfolio.html">Projetos</a></li>
-    <li><a class="cta-nav" href="contacto.html" aria-current="page">Falar connosco</a></li>
+    <li><a href="projetos.html">Projetos</a></li>
+    <li><a class="cta-nav" href="contacto.html">Falar Conosco</a></li>
   </ul>
 </header>
 
-<main id="conteudo">
-  <div class="phead">
+
+
+  <main id="conteudo">
+
+    <!-- ================================================
+         TOPO DA PÁGINA
+         ================================================ -->
+    <div class="phead">
+      <div class="wrap">
+        <nav class="crumbs" aria-label="Localização">
+          <a href="index.html">início</a> / <span>contacto</span>
+        </nav>
+        <span class="chip">(vamos conversar)</span>
+        <h1>tem um projeto em mente?</h1>
+        <p class="lead">Conte-nos o que precisa e respondemos com uma proposta à medida do seu negócio.</p>
+      </div>
+    </div>
+
+
+    <!-- ================================================
+         CONTACTO: DADOS + FORMULÁRIO
+         ================================================ -->
+    <section>
+      <div class="wrap contact">
+
+        <!-- Dados de contacto (SUBSTITUA pelos reais) -->
+        <div class="info fade-up">
+          <div>
+            <b>Email</b>
+            <a href="mailto:contacto@blackbirdmidia.co.mz">contacto@blackbirdmidia.co.mz</a>
+          </div>
+          <div>
+            <b>Telefone e WhatsApp</b>
+            <a href="https://wa.me/258840000000" target="_blank" rel="noopener">+258 84 000 0000</a>
+          </div>
+          <div>
+            <b>Localização</b>
+            <span>Maputo, Moçambique</span>
+          </div>
+          <div>
+            <b>Horário</b>
+            <span>Segunda a sexta, 8h00 às 17h00</span>
+          </div>
+          <p class="note">Respondemos normalmente em até um dia útil.</p>
+        </div>
+
+        <!-- Formulário -->
+        <form class="form fade-up" id="contactForm" novalidate>
+
+          <!-- 1. Identificação -->
+          <div class="row">
+            <label>Nome
+              <input type="text" name="nome" autocomplete="name" required aria-describedby="err-nome">
+              <span class="err" id="err-nome" role="alert"></span>
+            </label>
+            <label>Email
+              <input type="email" name="email" autocomplete="email" required aria-describedby="err-email">
+              <span class="err" id="err-email" role="alert"></span>
+            </label>
+          </div>
+
+          <!-- 2. Telefone e serviço -->
+          <div class="row">
+            <label>Telefone (opcional)
+              <input type="tel" name="telefone" autocomplete="tel">
+            </label>
+            <label>Serviço
+              <select name="servico" required aria-describedby="err-servico">
+                <option value="">Escolha um serviço</option>
+                <optgroup label="Audiovisual">
+                  <option>Vídeo</option>
+                  <option>Fotografia</option>
+                  <option>Gestão de redes</option>
+                  <option>Produção de eventos</option>
+                </optgroup>
+                <optgroup label="Desenvolvimento e tecnologia">
+                  <option>Websites</option>
+                  <option>Sistemas ERP</option>
+                  <option>Automação de serviços</option>
+                  <option>Portais para eventos</option>
+                </optgroup>
+                <optgroup label="Design e negócio">
+                  <option>Design gráfico</option>
+                  <option>Consultoria empresarial</option>
+                </optgroup>
+                <option>Outro / mais do que um serviço</option>
+              </select>
+              <span class="err" id="err-servico" role="alert"></span>
+            </label>
+          </div>
+
+          <!-- 3. Prazo -->
+          <label>Prazo desejado (opcional)
+            <input type="text" name="prazo" placeholder="Ex.: até ao fim do mês">
+          </label>
+
+          <!-- 4. Mensagem -->
+          <label>Conte-nos sobre o projeto
+            <textarea name="mensagem" required aria-describedby="err-mensagem" placeholder="Objetivo, público, referências, o que já existe…"></textarea>
+            <span class="err" id="err-mensagem" role="alert"></span>
+          </label>
+
+          <!-- 5. Ações -->
+          <div class="btns">
+            <button class="btn btn-solid" type="submit">Enviar por email</button>
+            <button class="btn btn-line" type="button" id="sendWhats">Enviar por WhatsApp</button>
+          </div>
+
+          <p class="status" id="formStatus" role="status" aria-live="polite"></p>
+          <p class="note">Ao enviar, a mensagem abre na sua aplicação de email ou no WhatsApp, pronta a seguir. Não guardamos os seus dados neste site.</p>
+        </form>
+
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ==================================================
+       RODAPÉ
+       ================================================== -->
+  <footer>
     <div class="wrap">
-      <nav class="crumbs" aria-label="Localização"><a href="index.html">início</a> / <span>contacto</span></nav>
-      <span class="chip">(vamos conversar)</span>
-      <h1>tem um projeto em mente?</h1>
-      <p class="lead">Conte-nos o que precisa e respondemos com uma proposta à medida do seu negócio.</p>
-    </div>
-  </div>
 
-  <section>
-    <div class="wrap contact">
-      <!-- Dados de contacto: SUBSTITUA pelos reais -->
-      <div class="info fade-up">
-        <div><b>Email</b><a href="mailto:contacto@blackbirdmidia.co.mz">contacto@blackbirdmidia.co.mz</a></div>
-        <div><b>Telefone e WhatsApp</b><a href="https://wa.me/258840000000" target="_blank" rel="noopener">+258 84 000 0000</a></div>
-        <div><b>Localização</b><span>Maputo, Moçambique</span></div>
-        <div><b>Horário</b><span>Segunda a sexta, 8h00 às 17h00</span></div>
-        <p class="note">Respondemos normalmente em até um dia útil.</p>
+      <div class="foot">
+        <div>
+          <a class="logo" href="index.html" aria-label="BlackBird Mídia">
+            BLA<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><use href="#logo-o"/></svg>KBIRD<small>Mídia</small>
+          </a>
+          <p style="margin-top:14px">Produtora audiovisual, desenvolvimento de software, design e consultoria para marcas e instituições.</p>
+        </div>
+
+        <div>
+          <h4>Navegação</h4>
+          <ul>
+            <li><a href="index.html#quem-somos">Estúdio</a></li>
+            <li><a href="servicos.html">Serviços</a></li>
+            <li><a href="processo.html">Processo</a></li>
+            <li><a href="portfolio.html">Projetos</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Serviços</h4>
+          <ul>
+            <li><a href="servicos.html#video">Audiovisual</a></li>
+            <li><a href="servicos.html#websites">Websites e portais</a></li>
+            <li><a href="servicos.html#erp">ERP e automação</a></li>
+            <li><a href="servicos.html#design">Design gráfico</a></li>
+            <li><a href="servicos.html#consultoria">Consultoria</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Contacto</h4>
+          <ul>
+            <li><a href="contacto.html">Pedir proposta</a></li>
+            <li><a href="contacto.html">Falar connosco</a></li>
+          </ul>
+        </div>
       </div>
 
-      <form class="form fade-up" id="contactForm" novalidate>
-        <div class="row">
-          <label>Nome
-            <input type="text" name="nome" autocomplete="name" required aria-describedby="err-nome">
-            <span class="err" id="err-nome" role="alert"></span>
-          </label>
-          <label>Email
-            <input type="email" name="email" autocomplete="email" required aria-describedby="err-email">
-            <span class="err" id="err-email" role="alert"></span>
-          </label>
-        </div>
-        <div class="row">
-          <label>Telefone (opcional)
-            <input type="tel" name="telefone" autocomplete="tel">
-          </label>
-          <label>Serviço
-            <select name="servico" required aria-describedby="err-servico">
-              <option value="">Escolha um serviço</option>
-              <optgroup label="Audiovisual">
-                <option>Vídeo</option><option>Fotografia</option><option>Gestão de redes</option><option>Produção de eventos</option>
-              </optgroup>
-              <optgroup label="Desenvolvimento e tecnologia">
-                <option>Websites</option><option>Sistemas ERP</option><option>Automação de serviços</option><option>Portais para eventos</option>
-              </optgroup>
-              <optgroup label="Design e negócio">
-                <option>Design gráfico</option><option>Consultoria empresarial</option>
-              </optgroup>
-              <option>Outro / mais do que um serviço</option>
-            </select>
-            <span class="err" id="err-servico" role="alert"></span>
-          </label>
-        </div>
-        <label>Prazo desejado (opcional)
-          <input type="text" name="prazo" placeholder="Ex.: até ao fim do mês">
-        </label>
-        <label>Conte-nos sobre o projeto
-          <textarea name="mensagem" required aria-describedby="err-mensagem" placeholder="Objetivo, público, referências, o que já existe…"></textarea>
-          <span class="err" id="err-mensagem" role="alert"></span>
-        </label>
-        <div class="btns">
-          <button class="btn btn-solid" type="submit">Enviar por email</button>
-          <button class="btn btn-line" type="button" id="sendWhats">Enviar por WhatsApp</button>
-        </div>
-        <p class="status" id="formStatus" role="status" aria-live="polite"></p>
-        <p class="note">Ao enviar, a mensagem abre na sua aplicação de email ou no WhatsApp, pronta a seguir. Não guardamos os seus dados neste site.</p>
-      </form>
-    </div>
-  </section>
-</main>
-
-<footer>
-  <div class="wrap">
-    <div class="foot">
-      <div>
-        <a class="logo" href="index.html" aria-label="BlackBird Mídia">BLA<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10.5"/><path d="M12 1.5 L18.5 11.5"/><path d="M12 1.5 L18.5 11.5" transform="rotate(60 12 12)"/><path d="M12 1.5 L18.5 11.5" transform="rotate(120 12 12)"/><path d="M12 1.5 L18.5 11.5" transform="rotate(180 12 12)"/><path d="M12 1.5 L18.5 11.5" transform="rotate(240 12 12)"/><path d="M12 1.5 L18.5 11.5" transform="rotate(300 12 12)"/></svg>KBIRD<small>Mídia</small></a>
-        <p style="margin-top:14px">Produtora audiovisual, desenvolvimento de software, design e consultoria para marcas e instituições.</p>
+      <div class="legal">
+        <span class="chip">only excellence</span>
+        <span>© 2026 BlackBird Mídia. Todos os direitos reservados.</span>
       </div>
-      <div><h4>Navegação</h4><ul><li><a href="index.html#quem-somos">Estúdio</a></li><li><a href="servicos.html">Serviços</a></li><li><a href="processo.html">Processo</a></li><li><a href="portfolio.html">Projetos</a></li></ul></div>
-      <div><h4>Serviços</h4><ul><li><a href="servicos.html#video">Audiovisual</a></li><li><a href="servicos.html#websites">Websites e portais</a></li><li><a href="servicos.html#erp">ERP e automação</a></li><li><a href="servicos.html#design">Design gráfico</a></li><li><a href="servicos.html#consultoria">Consultoria</a></li></ul></div>
-      <div><h4>Contacto</h4><ul><li><a href="contacto.html">Pedir proposta</a></li><li><a href="contacto.html">Falar connosco</a></li></ul></div>
+
     </div>
-    <div class="legal"><span class="chip">only excellence</span><span>© 2026 BlackBird Mídia. Todos os direitos reservados.</span></div>
-  </div>
-</footer>
-<script src="js/interno.js"></script>
+  </footer>
+
+
+<script src="servicos/js/menu.js"></script>
+<script src="servicos/js/interno.js"></script>
 </body>
 </html>
