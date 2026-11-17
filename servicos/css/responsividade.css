@@ -1,0 +1,317 @@
+/* =========================================================
+   BLACKBIRD MÍDIA — responsive.css
+   Camada final partilhada por TODAS as páginas.
+
+   COMO USAR: no <head> de cada página, DEPOIS de qualquer
+   <style> ou <link> existente (tem de ser o último):
+   <link rel="stylesheet" href="responsive.css">
+
+   Contém:
+   1. Cores (tokens + contraste)
+   2. Base fluida (sem scroll lateral)
+   3. Componentes usados no HTML mas sem CSS
+   4. Breakpoints: 1100 / 900 / 760 / 600 / 480 / 360
+   5. Toque, ecrãs baixos e acessibilidade
+   ========================================================= */
+
+
+/* ---------- 1. CORES ---------- */
+/* html:root vence o :root que cada página declara no seu <style> */
+html:root {
+  --bg:      #0b0b0c;
+  --bg-2:    #111113;   /* secções alternadas */
+  --bg-3:    #161618;   /* metodologia, faixas */
+  --panel:   #121214;
+  --line:    #2a2a2d;
+  --ash:     #9a9a9e;   /* antes #7f7f82: contraste insuficiente em texto pequeno */
+  --silver:  #cfcfd2;
+  --text:    #dcdcdf;
+  --white:   #ffffff;
+  --muted:   rgba(255, 255, 255, .68);  /* substitui os rgba(.48 – .62) */
+  --danger:  #e3a6a6;
+  --tap:     44px;
+}
+
+/* Fundos que estavam fixos com 6 tons diferentes de cinzento */
+.service-detail.alt { background: var(--bg-2); }
+.services-method    { background: var(--bg-3); }
+.portfolio-cta      { background: var(--bg-2); }
+.process-details,
+.process-faq        { background: var(--panel); }
+.philosophy-section { background: var(--bg-2) !important; } /* anula o style inline #1d1d1d */
+
+/* Texto secundário legível */
+.step-description,
+.stage-intro,
+.stage-information .ticks li,
+.commitment-card p,
+.process-faq .faq details p,
+.process-cta p,
+.section-heading p,
+.faq-heading > p,
+.portfolio-card p,
+.portfolio-hero .lead,
+.services-hero .hero-description { color: var(--muted); }
+
+.portfolio-card .tags span,
+.portfolio-card .tag { color: rgba(255, 255, 255, .85); }
+
+.form .err { color: var(--danger); }
+.form [aria-invalid="true"] { border-color: var(--danger); }
+
+
+/* Barra de navegação sem borda */
+.nav, .nav.solid { border: 0 !important; }
+
+/* ---------- 2. BASE FLUIDA ---------- */
+html { -webkit-text-size-adjust: 100%; scroll-padding-top: 96px; }
+body { overflow-x: clip; }
+img, svg, video, canvas, iframe { max-width: 100%; height: auto; }
+.service-image img { height: 100%; }       /* mantém o cover */
+h1, h2, h3, h4 { overflow-wrap: break-word; text-wrap: balance; }
+p, li { overflow-wrap: break-word; }
+.info a, .info span, footer a { overflow-wrap: anywhere; }  /* emails longos */
+
+.wrap { padding-inline: max(var(--pad), env(safe-area-inset-left)) max(var(--pad), env(safe-area-inset-right)); }
+
+/* O body já compensa o safe-area; evita somar duas vezes nos heros */
+.services-hero { padding-top: 130px; }
+.hero { padding-top: 100px; }
+
+.skip, .skip-link { position: absolute; left: -9999px; top: 8px; z-index: 100; padding: 10px 16px; background: var(--silver); color: var(--bg); border-radius: 8px; }
+.skip:focus, .skip-link:focus { left: 12px; }
+
+/* Tamanho mínimo legível (havia .58rem e .62rem) */
+.process-hero-bottom, .portfolio-hero-bottom,
+.hero-bottom, .portfolio-card .tag, .portfolio-card .tags span,
+.category-number, .stage-result span, .commitment-number { font-size: max(.7rem, 11px); }
+
+
+/* ---------- 3. COMPONENTES EM FALTA ---------- */
+
+/* Botões */
+.btn { min-height: var(--tap); justify-content: center; border: 1px solid var(--silver); }
+.btn.ghost { background: transparent; color: var(--silver); }
+.btn.ghost:hover { background: rgba(255, 255, 255, .08); }
+.actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 28px; }
+
+.link-arrow { color: var(--silver); font-size: var(--fs-sm); font-weight: 500; text-decoration: none; padding-block: 10px; }
+.link-arrow:hover { color: var(--white); }
+
+/* Textos de página (sobre.html) */
+.eyebrow { margin: 0 0 14px; color: var(--ash); font-size: var(--fs-xs); letter-spacing: .16em; text-transform: uppercase; }
+.lead { color: var(--ash); max-width: 56ch; font-size: clamp(1rem, 1.4vw, 1.2rem); }
+.big { color: var(--text); font-size: clamp(1.1rem, 1.6vw, 1.3rem); max-width: 50ch; }
+.values-note { color: var(--ash); max-width: 60ch; }
+
+/* sobre.html: .company e .vm não tinham CSS */
+.company { display: grid; grid-template-columns: 1.1fr .9fr; gap: clamp(32px, 6vw, 90px); align-items: start; }
+.vm { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 20px; margin-top: 8px; }
+.company .vm { grid-template-columns: 1fr; margin-top: 0; }
+.vm > div { padding: clamp(20px, 3vw, 30px); border: 1px solid var(--line); border-radius: 16px; background: rgba(255, 255, 255, .02); }
+.vm h3 { margin-bottom: 10px; }
+.vm p { color: var(--ash); font-size: var(--fs-sm); margin-bottom: 0; }
+.vm a { display: inline-block; margin-top: 14px; color: var(--silver); font-size: var(--fs-sm); text-decoration: none; padding-block: 6px; }
+.vm a:hover { color: var(--white); }
+section.cta .actions { justify-content: center; }
+section.cta .eyebrow { text-align: center; }
+
+/* servicos.html: grelha e cabeçalho da visão geral não tinham CSS base */
+.service-heading { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 5vw, 70px); align-items: end; margin-bottom: clamp(32px, 5vw, 56px); }
+.service-heading p { color: var(--ash); margin: 0; }
+.service-overview { padding-block: var(--section-y); }
+.service-overview-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(14px, 2vw, 22px); }
+
+/* Rodapé: algumas páginas usam <b> em vez de <h4> */
+.foot b { display: block; margin-bottom: 14px; color: var(--silver); font-weight: 600; font-size: var(--fs-sm); letter-spacing: .08em; text-transform: uppercase; }
+.foot-brand p { color: var(--ash); max-width: 38ch; }
+.foot ul a, .foot li a { display: inline-block; padding-block: 4px; }
+
+/* Filtros do portfólio: rolagem horizontal em vez de quebrar linhas */
+.portfolio-filters { scrollbar-width: none; }
+.portfolio-filters::-webkit-scrollbar { display: none; }
+.portfolio-filters .filter { min-height: 40px; white-space: nowrap; }
+[hidden] { display: none !important; }   /* o filtro usa hidden nas categorias */
+
+
+/* ---------- 4. BREAKPOINTS (desktop → mobile) ---------- */
+
+@media (max-width: 1100px) {
+  .portfolio-grid { gap: 14px; }
+  .commitment-grid { grid-template-columns: repeat(2, 1fr); }
+  .stage-content { gap: 40px; }
+}
+
+@media (max-width: 900px) {
+  .company, .service-heading { grid-template-columns: 1fr; }
+  .service-heading { align-items: start; }
+  .service-detail-grid,
+  .service-detail-grid.reverse { grid-template-columns: 1fr; gap: 32px; }
+  .service-detail-grid.reverse .service-content { order: 1; }
+  .service-detail-grid.reverse .service-image   { order: 2; }
+  .service-image { min-height: 0; aspect-ratio: 16 / 10; }
+
+  .stage-content { grid-template-columns: 1fr; gap: 28px; }   /* antes só colapsava aos 650px */
+  .process-steps { grid-template-columns: repeat(2, 1fr); }
+  .method-grid { grid-template-columns: repeat(2, 1fr); }
+
+  .section-heading, .category-heading { flex-direction: column; align-items: flex-start; gap: 16px; }
+  .portfolio-grid { grid-template-columns: 1fr; }
+  .portfolio-card, .portfolio-card-large { min-height: 400px; }
+}
+
+/* ---------- MENU LATERAL (HAMBÚRGUER) — requer menu.js ---------- */
+
+/* Fundo escurecido atrás do menu (criado pelo menu.js) */
+.nav-overlay {
+  position: fixed; inset: 0; z-index: 40;
+  background: rgba(0, 0, 0, .62);
+  opacity: 0; visibility: hidden;
+  transition: opacity .35s ease, visibility 0s .35s;
+}
+.nav-overlay.show { opacity: 1; visibility: visible; transition-delay: 0s; }
+html.menu-open { overflow: hidden; }          /* bloqueia o scroll da página */
+
+@media (min-width: 761px) { .nav-overlay { display: none; } }
+
+@media (max-width: 760px) {
+  /* Barra: sem transform/backdrop-filter, para o menu fixo ocupar o ecrã todo */
+  .nav {
+    top: max(12px, env(safe-area-inset-top));
+    left: 12px; right: 12px; width: auto; transform: none;
+    padding: 6px 6px 6px 18px; border-radius: 999px;
+    -webkit-backdrop-filter: none; backdrop-filter: none;
+    background: rgba(14, 14, 16, .92);
+  }
+  .nav.nav-hidden { transform: translateY(-160%); }
+  .nav.menu-open { transform: none; }
+
+  /* Botão hambúrguer: 3 linhas que viram X */
+  .nav #menuBtn {
+    display: block !important; visibility: visible !important; opacity: 1 !important;
+    position: relative; z-index: 2; flex: none; margin-left: auto;
+    width: 44px; height: 44px; min-height: 0; padding: 0; border-radius: 50%;
+    font-size: 0; line-height: 0; color: transparent;   /* texto só para leitores de ecrã */
+    border: 0 !important; outline-offset: 2px; cursor: pointer;
+    background: linear-gradient(var(--silver), var(--silver)) center / 18px 2px no-repeat;
+    transition: background-size .2s ease;
+  }
+  .nav #menuBtn::before, .nav #menuBtn::after {
+    content: ""; position: absolute; left: 12px; right: 12px; height: 2px;
+    background: var(--silver); border-radius: 2px;
+    transition: transform .3s var(--ease), top .3s var(--ease), bottom .3s var(--ease);
+  }
+  .nav #menuBtn::before { top: 14px; }
+  .nav #menuBtn::after  { bottom: 14px; }
+  .nav #menuBtn[aria-expanded="true"] { background-size: 0 2px; }
+  .nav #menuBtn[aria-expanded="true"]::before { top: 20px;    transform: rotate(45deg); }
+  .nav #menuBtn[aria-expanded="true"]::after  { bottom: 20px; transform: rotate(-45deg); }
+
+  /* Painel lateral (entra pela direita) */
+  .nav #menuList {
+    position: fixed; top: 0; right: 0; bottom: 0; left: auto; z-index: 1;
+    width: min(86vw, 360px); height: 100dvh; max-height: none;
+    display: flex; flex-direction: column; align-items: stretch; gap: 0;
+    padding: 92px 28px calc(28px + env(safe-area-inset-bottom, 0px));
+    margin: 0; overflow-y: auto; overscroll-behavior: contain;
+    background: var(--bg-2);
+    border: 0; border-left: 1px solid var(--line); border-radius: 0;
+    box-shadow: -24px 0 60px rgba(0, 0, 0, .55);
+    transform: translateX(100%); visibility: hidden;
+    transition: transform .4s var(--ease), visibility 0s .4s;
+  }
+  .nav #menuList.open { transform: none; visibility: visible; transition-delay: 0s; }
+
+  .nav #menuList a {
+    display: block; padding: 16px 0; min-height: var(--tap);
+    font-size: 1.15rem; font-weight: 400; color: var(--text);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav #menuList a:hover,
+  .nav #menuList a[aria-current="page"] { color: var(--white); }
+  .nav #menuList .cta-nav {
+    margin-top: 24px; padding: 14px 18px; text-align: center;
+    border: 1px solid var(--silver); border-radius: 999px; color: var(--silver);
+  }
+  .nav #menuList .cta-nav:hover { background: var(--silver); color: var(--bg); }
+
+  .hero { padding-top: 90px; }
+  .services-hero { min-height: auto; padding-top: 115px; }
+  .services-hero-content { padding-bottom: 48px; }
+  .service-overview-grid { grid-template-columns: 1fr; }
+  .overview-card { min-height: 250px; }
+}
+
+@media (max-width: 600px) {
+  :root { --pad: 20px; }
+
+  .btn, .btn-pill { width: 100%; }
+  .actions, .services-hero-actions, .hero-actions { flex-direction: column; align-items: stretch; }
+  .hero-actions a { min-width: 0; }
+
+  .row { grid-template-columns: 1fr; }
+  .form { border-radius: 20px; }
+  /* 16px evita o zoom automático do iOS ao focar um campo */
+  .form input, .form select, .form textarea { font-size: 16px; min-height: var(--tap); }
+
+  .service-list { grid-template-columns: 1fr; }
+  .method-grid, .commitment-grid { grid-template-columns: 1fr; gap: 28px; }
+  .commitment-card { min-height: 0; }
+
+  .process-hero-bottom, .portfolio-hero-bottom, .hero-bottom { flex-wrap: wrap; gap: 10px; }
+
+  .legal { flex-direction: column; align-items: flex-start; }
+  .foot { grid-template-columns: 1fr; gap: 28px; }
+}
+
+@media (max-width: 480px) {
+  .process-steps { grid-template-columns: 1fr; }
+  .process-step { min-height: 0; padding: 22px 18px; border-left: 1px solid var(--line); }
+  .process-step + .process-step { border-top: 1px solid var(--line); }
+  .process-step:nth-child(3) { border-left: 1px solid var(--line); }
+
+  .stage-information { padding: 20px; }
+  .portfolio-card, .portfolio-card-large { min-height: 380px; padding: 20px; }
+  .portfolio-card h4 { font-size: 1.5rem; }
+  .vm > div { padding: 20px; }
+  .services-index { grid-template-columns: 1fr 1fr; }
+  .services-index a { padding: 16px 8px 16px 0; }
+}
+
+@media (max-width: 360px) {
+  .services-hero h1 { font-size: 2.1rem; }
+  .logo { font-size: 1rem; }
+  .nav { padding-inline: 14px; }
+  .chip { font-size: .7rem; }
+}
+
+
+/* ---------- 5. TOQUE, ECRÃS BAIXOS, ACESSIBILIDADE ---------- */
+
+/* Sem hover (telemóvel/tablet): o texto dos cartões fica sempre visível */
+@media (hover: none) {
+  .service-overlay { opacity: 1; visibility: visible; transform: none;
+    background: linear-gradient(to top, rgba(11, 11, 12, .94), rgba(11, 11, 12, .1) 80%);
+    backdrop-filter: none; -webkit-backdrop-filter: none; }
+  .card:hover, .commitment-card:hover, .overview-card:hover, .proj:hover { transform: none; }
+}
+
+/* Telemóvel deitado / janelas baixas */
+@media (max-height: 520px) and (orientation: landscape) {
+  .hero, .services-hero, .process-hero, .portfolio-hero { min-height: auto; padding-bottom: 32px; }
+}
+
+/* Desktops muito largos */
+@media (min-width: 1600px) {
+  .wrap { max-width: 1360px; }
+}
+
+/* Foco visível sempre */
+:focus-visible { outline: 2px solid var(--silver); outline-offset: 3px; }
+
+/* Movimento reduzido: já cobre partículas e animações */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+  #snow { display: none; }
+  .fade-up, .services-hero h1 .line, .services-hero .hero-description, .services-hero .services-hero-actions { opacity: 1; transform: none; }
+}
