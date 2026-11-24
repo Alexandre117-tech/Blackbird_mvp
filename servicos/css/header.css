@@ -1,9 +1,27 @@
+
 .services-hero .wrap,
 .service-overview,
 .service-detail,
 .services-cta {
     position: relative;
     z-index: 1;
+}
+
+.logo2 svg {
+    display: inline-block;
+
+    vertical-align: middle;
+    animation: blackbird-spin 6s linear infinite;
+    transform-origin: center;
+}
+
+@keyframes blackbird-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 

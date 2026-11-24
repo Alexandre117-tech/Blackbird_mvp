@@ -553,8 +553,8 @@ p  { margin: 0 0 1.1em; max-width: 62ch; }
    CARDS, PASSOS, TRABALHOS
    ========================================================= */
 .sec-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 20px; }
-
 .area { margin-top: clamp(40px, 5vw, 64px); }
+
 .area-label {
   display: flex;
   align-items: center;
@@ -569,22 +569,71 @@ p  { margin: 0 0 1.1em; max-width: 62ch; }
 }
 .area-label::after { content: ""; flex: 1; height: 1px; background: var(--line); }
 
-.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); gap: 20px; }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr));
+  gap: 20px;
+}
 
 .card {
   display: flex;
   flex-direction: column;
-  background: rgba(255, 255, 255, 0.02);
+  background-color: #111;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   border: 1px solid var(--line);
-  padding: clamp(20px, 3vw, 28px);
   border-radius: 16px;
+  overflow: hidden; /* Garante que a sombra respeita o border-radius */
+  padding: 0;       /* O padding passa para .card-overlay para cobrir o card todo */
   text-decoration: none;
-  transition: border-color 0.25s, background 0.25s, transform 0.25s;
+  transition: border-color 0.25s, transform 0.25s;
 }
-.card:hover { border-color: var(--silver); background: rgba(255, 255, 255, 0.05); transform: translateY(-4px); }
-.card p { color: var(--ash); font-size: var(--fs-sm); margin: 0 0 20px; }
-.card .go { margin-top: auto; color: var(--silver); font-size: var(--fs-sm); font-weight: 500; }
 
+.card:hover {
+  border-color: var(--silver);
+  transform: translateY(-4px);
+}
+
+/* Camada de sombra que ocupa 100% do card */
+.card-overlay {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: clamp(20px, 3vw, 28px);
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.82) 0%,
+    rgba(0, 0, 0, 0.48) 100%
+  );
+  transition: background 0.25s;
+}
+
+.card:hover .card-overlay {
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.9) 0%,
+    rgba(0, 0, 0, 0.6) 100%
+  );
+}
+
+.card h3 {
+  color: #fff;
+  margin: 0 0 8px;
+}
+
+.card p {
+  color: rgba(255, 255, 255, 0.82);
+  font-size: var(--fs-sm);
+  margin: 0 0 20px;
+}
+
+.card .go {
+  margin-top: auto;
+  color: var(--silver);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+}
 .steps {
   counter-reset: s;
   display: grid;
@@ -766,6 +815,116 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 32px; align-items: flex-star
 @media (prefers-reduced-motion: reduce) {
   #snow { display: none; }
  }
+
+
+
+
+
+
+
+
+
+
+
+.area { margin-top: clamp(40px, 5vw, 64px); }
+
+.area-label {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 0 0 18px;
+  max-width: none;
+  font-size: var(--fs-xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ash);
+  font-weight: 500;
+}
+.area-label::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+  gap: 20px;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 300px;
+  background-color: #16161a; /* Cor de reserva enquanto a imagem carrega */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  overflow: hidden;
+  padding: 0;
+  text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+    background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-color: var(--silver);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.25);
+}
+
+.card-overlay {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  flex: 1;
+  padding: clamp(24px, 3vw, 32px);
+  background: linear-gradient(
+    115deg,
+    rgba(24, 24, 28, 0.664) 0%,
+    rgba(45, 45, 52, 0.699) 55%,
+    rgba(60, 60, 72, 0.61) 100%
+  );
+  transition: background 0.3s ease;
+}
+
+.card:hover .card-overlay {
+  background: linear-gradient(
+    115deg,
+    rgba(18, 18, 22, 0.541) 0%,
+    rgba(38, 38, 44, 0.445) 55%,
+    rgba(50, 50, 60, 0.45) 100%
+  );
+}
+
+.card h3 {
+  color: #ffffff;
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1.25;
+  margin: 0 0 10px;
+}
+
+.card p {
+  color: rgba(255, 255, 255, 0.88);
+  font-size: var(--fs-sm);
+  line-height: 1.5;
+  margin: 0 0 18px;
+}
+
+.card .go {
+  color: #ffffff;
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  opacity: 0.9;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.card:hover .go {
+  opacity: 1;
+  transform: translateX(4px);
+}
 </style>
 </head>
 <body class="home">
@@ -773,35 +932,36 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 32px; align-items: flex-star
 <canvas id="snow" aria-hidden="true"></canvas>
 <!-- Cabeçalho Flutuante Inteligente -->
 
-<header class="nav" id="nav">
-  <a class="logo" href="index.html" aria-label="BlackBird Mídia, início">
-    BLA<svg viewBox="0 0 24 24" fill="none"
-      stroke="currentColor" stroke-width="2"
-      stroke-linecap="round" aria-hidden="true">
-      <circle cx="12" cy="12" r="10.5"/>
-      <path d="M12 1.5 L18.5 11.5" transform="rotate(0 12 12)"/>
-      <path d="M12 1.5 L18.5 11.5" transform="rotate(60 12 12)"/>
-      <path d="M12 1.5 L18.5 11.5" transform="rotate(120 12 12)"/>
-      <path d="M12 1.5 L18.5 11.5" transform="rotate(180 12 12)"/>
-      <path d="M12 1.5 L18.5 11.5" transform="rotate(240 12 12)"/>
-      <path d="M12 1.5 L18.5 11.5" transform="rotate(300 12 12)"/>
-    </svg>KBIRD
-    <small>Mídia</small>
-  </a>
+  <header class="nav" id="nav">
+    <a class="logo" href="index.html" aria-label="BlackBird Mídia, início">
+      BLA<svg viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" aria-hidden="true">
+        <circle cx="12" cy="12" r="10.5"/>
+        <path d="M12 1.5 L18.5 11.5" transform="rotate(0 12 12)"/>
+        <path d="M12 1.5 L18.5 11.5" transform="rotate(60 12 12)"/>
+        <path d="M12 1.5 L18.5 11.5" transform="rotate(120 12 12)"/>
+        <path d="M12 1.5 L18.5 11.5" transform="rotate(180 12 12)"/>
+        <path d="M12 1.5 L18.5 11.5" transform="rotate(240 12 12)"/>
+        <path d="M12 1.5 L18.5 11.5" transform="rotate(300 12 12)"/>
+      </svg>KBIRD
+      <small>Mídia</small>
+    </a>
 
-  <button class="menu" id="menuBtn"
-    aria-expanded="false" aria-controls="menuList">
-    Menu
-  </button>
+    <button class="menu" id="menuBtn"
+      aria-expanded="false" aria-controls="menuList">
+      Menu
+    </button>
 
-  <ul id="menuList">
-    <li><a href="sobre.html">Sobre nós</a></li>
-    <li><a href="servicos.html">Serviços</a></li>
-    <li><a href="processo.html">Processo</a></li>
-    <li><a href="projetos.html">Projetos</a></li>
-    <li><a class="cta-nav" href="contacto.html">Falar Conosco</a></li>
-  </ul>
-</header>
+<ul id="menuList">
+  <li><a href="sobre.html">Sobre nós</a></li>
+  <li><a href="servicos.html">Serviços</a></li>
+  <li><a href="processo.html">Processo</a></li>
+  <li><a href="projetos.html">Projetos</a></li>
+<li><a href="blackbird-tech.html" class="tech-link">Blackbird <span>Tech</span></a></li>
+  <li><a class="cta-nav" href="contacto.html">Falar Conosco</a></li>
+</ul>
+  </header>
 
 
 <main id="conteudo">
@@ -916,7 +1076,6 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 32px; align-items: flex-star
 
 <!-- SECÇÃO DE SERVIÇOS -->
 <!-- SECÇÃO DE SERVIÇOS -->
-<!-- SECÇÃO DE SERVIÇOS -->
 <section id="servicos">
   <div class="wrap">
     <div class="sec-head">
@@ -928,37 +1087,101 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 32px; align-items: flex-star
       <a class="link-arrow fade-up" href="servicos.html">Ver todos os serviços →</a>
     </div>
 
+    <!-- 01 — PRODUÇÃO AUDIOVISUAL -->
     <div class="area">
       <p class="area-label" id="audiovisual">01 — produção audiovisual</p>
       <div class="grid">
-        <a class="card fade-up" href="servicos.html#video"><h3>Vídeo</h3><p>Vídeos institucionais, publicitários, documentais, promocionais e de eventos.</p><span class="go">Saber mais →</span></a>
-        <a class="card fade-up" href="servicos.html#fotografia"><h3>Fotografia</h3><p>Fotografia corporativa, publicitária, de produtos e de eventos.</p><span class="go">Saber mais →</span></a>
-        <a class="card fade-up" href="servicos.html#producao-eventos"><h3>Produção de eventos</h3><p>Concepção, produção técnica e cobertura audiovisual de eventos.</p><span class="go">Saber mais →</span></a>
+        <a class="card fade-up" href="servicos.html#video" style="background-image: url(./assets/video.jpg);">
+          <div class="card-overlay">
+            <h3>Vídeo</h3>
+            <p>Vídeos institucionais, publicitários, documentais, promocionais e de eventos.</p>
+            <span class="go">Saber mais →</span>
+          </div>
+        </a>
+
+        <a class="card fade-up" href="servicos.html#fotografia" style="background-image: url(./assets/fotos.jpg);">
+          <div class="card-overlay">
+            <h3>Fotografia</h3>
+            <p>Fotografia corporativa, publicitária, de produtos e de eventos.</p>
+            <span class="go">Saber mais →</span>
+          </div>
+        </a>
+
+        <a class="card fade-up" href="servicos.html#producao-eventos" style="background-image: url(./assets/telaled.jpg);">
+          <div class="card-overlay">
+            <h3>Painel Led</h3>
+            <p>Concepção, produção técnica e cobertura audiovisual de eventos.</p>
+            <span class="go">Saber mais →</span>
+          </div>
+        </a>
       </div>
     </div>
 
+    <!-- 02 — DESIGN E COMUNICAÇÃO -->
     <div class="area">
       <p class="area-label" id="design">02 — design e comunicação</p>
       <div class="grid">
-        <a class="card fade-up" href="#design"><h3>Design gráfico</h3><p>Identidade visual, materiais institucionais, publicidade e peças para meios digitais.</p><span class="go">Saber mais →</span></a>
-        <a class="card fade-up" href="servicos.html#gestao"><h3>Comunicação digital</h3><p>Planeamento de conteúdos e gestão de presença digital das marcas.</p><span class="go">Saber mais →</span></a>
+        <a class="card fade-up" href="#design" style="background-image: url(./assets/design.jpg);">
+          <div class="card-overlay">
+            <h3>Design gráfico</h3>
+            <p>Identidade visual, materiais institucionais, publicidade e peças para meios digitais.</p>
+            <span class="go">Saber mais →</span>
+          </div>
+        </a>
+
+        <a class="card fade-up" href="servicos.html#gestao" style="background-image: url(./assets/comunicacao.jpg);">
+          <div class="card-overlay">
+            <h3>Comunicação digital</h3>
+            <p>Planeamento de conteúdos e gestão de presença digital das marcas.</p>
+            <span class="go">Saber mais →</span>
+          </div>
+        </a>
       </div>
     </div>
 
+    <!-- 03 — TECNOLOGIA E DESENVOLVIMENTO -->
     <div class="area">
       <p class="area-label" id="tecnologia">03 — tecnologia e desenvolvimento</p>
       <div class="grid">
-        <a class="card fade-up" href="#tecnologia"><h3>Websites e landing pages</h3><p>Presença institucional, páginas de campanha e captação de contactos.</p><span class="go">Saber mais →</span></a>
-        <a class="card fade-up" href="#tecnologia"><h3>Sistemas empresariais</h3><p>Soluções de gestão para vendas, stock, clientes, finanças e equipas.</p><span class="go">Saber mais →</span></a>
-        <a class="card fade-up" href="servicos.html#automacao"><h3>Automação de processos</h3><p>Fluxos digitais para reduzir tarefas manuais e melhorar operações.</p><span class="go">Saber mais →</span></a>
-        <a class="card fade-up" href="servicos.html#portais-eventos"><h3>Portais para eventos</h3><p>Plataformas de inscrições, participantes, credenciais e programas.</p><span class="go">Saber mais →</span></a>
+        <a class="card fade-up" href="#tecnologia" style="background-image: url(./assets/websites.png);">
+          <div class="card-overlay">
+            <h3>Websites e landing pages</h3>
+            <p>Presença institucional, páginas de campanha e captação de contactos.</p>
+            <span class="go">Saber mais →</span>
+          </div>
+        </a>
+
+        <a class="card fade-up" href="#tecnologia" style="background-image: url(./assets/sistemas.png);">
+          <div class="card-overlay">
+            <h3>Sistemas empresariais</h3>
+            <p>Soluções de gestão para vendas, stock, clientes, finanças e equipas.</p>
+            <span class="go">Saber mais →</span>
+          </div>
+        </a>
+
+
+
+        <a class="card fade-up" href="servicos.html#portais-eventos" style="background-image: url(./assets/eventos.png);">
+          <div class="card-overlay">
+            <h3>Portais para eventos</h3>
+            <p>Plataformas de inscrições, participantes, credenciais e programas.</p>
+            <span class="go">Saber mais →</span>
+          </div>
+        </a>
       </div>
     </div>
 
+    <!-- 04 — CONSULTORIA E ESTRATÉGIA -->
     <div class="area">
       <p class="area-label" id="consultoria">04 — consultoria e estratégia</p>
       <div class="grid">
-        <a class="card fade-up" href="#consultoria"><h3>Consultoria</h3><p>Diagnóstico e orientação para definir prioridades e seleccionar soluções de comunicação ou tecnologia.</p><span class="go">Saber mais →</span></a>
+        <a class="card fade-up" href="#consultoria" style="background-image: url(./assets/consultoria.jpg);">
+          <div class="card-overlay">
+            <h3>Consultoria</h3>
+            <p>Diagnóstico e orientação para definir prioridades e seleccionar soluções de comunicação ou tecnologia.</p>
+            <span class="go">Saber mais →</span>
+          </div>
+        </a>
       </div>
     </div>
   </div>
